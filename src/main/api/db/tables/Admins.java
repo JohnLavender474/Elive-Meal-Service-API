@@ -14,6 +14,18 @@ public class Admins implements DatabaseTable<String> {
 
     private final Map<String, String> admins = new HashMap<>();
 
+    /**
+     * Returns if the provided credentials are correct.
+     *
+     * @param username the username
+     * @param password the password
+     * @return if the provided credentials are correct
+     */
+    public boolean authenticated(String username, String password) {
+        return admins.containsKey(username) &&
+                new String(Base64.getDecoder().decode(admins.get(username))).equals(password);
+    }
+
     @Override
     public void add(String username, String password) {
         String encodedPassword = Base64.getEncoder().withoutPadding().encodeToString(password.getBytes());

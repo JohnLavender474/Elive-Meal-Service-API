@@ -1,6 +1,7 @@
 package main;
 
 import main.api.db.MockDatabaseImpl;
+import main.api.db.tables.Admins;
 import main.api.domain.Meal;
 import main.api.domain.MealOrder;
 import main.api.domain.MealType;
@@ -20,6 +21,28 @@ public class Tests {
         testConvertInputOrder3();
         testCreateMeal1();
         testCreateMeal2();
+        testAdminsDB1();
+        testAdminsDB2();
+    }
+
+    public static void testAdminsDB1() {
+        Admins admins = new Admins();
+        admins.add("john", "password");
+        if (admins.authenticated("john", "password")) {
+            System.out.println("Passed");
+        } else {
+            System.out.println("Failed");
+        }
+    }
+
+    public static void testAdminsDB2() {
+        Admins admins = new Admins();
+        admins.add("john", "password");
+        if (admins.authenticated("john", "hello")) {
+            System.out.println("Failed");
+        } else {
+            System.out.println("Passed");
+        }
     }
 
     public static void testCreateMeal1() {
