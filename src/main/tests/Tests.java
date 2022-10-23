@@ -1,7 +1,6 @@
-package main;
+package main.tests;
 
 import main.api.db.MockDatabaseImpl;
-import main.api.db.tables.Admins;
 import main.api.domain.Meal;
 import main.api.domain.MealOrder;
 import main.api.domain.MealType;
@@ -9,42 +8,91 @@ import main.api.exceptions.ErrorsException;
 import main.api.exceptions.InvalidInputException;
 import main.api.services.MealService;
 import main.api.services.MealServiceImpl;
+import main.utils.Globals;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Contains methods for testing.
+ */
 public class Tests {
 
+    /**
+     * Runs all tests.
+     */
     public static void driver() {
+        mainTest();
+        /*
         testConvertInputOrder1();
         testConvertInputOrder2();
         testConvertInputOrder3();
         testCreateMeal1();
         testCreateMeal2();
-        testAdminsDB1();
-        testAdminsDB2();
+         */
     }
 
-    public static void testAdminsDB1() {
-        Admins admins = new Admins();
-        admins.add("john", "password");
-        if (admins.authenticated("john", "password")) {
-            System.out.println("Passed");
-        } else {
-            System.out.println("Failed");
+    /**
+     * The main set of tests as enumerated in the "Entry SE Test 2021" PDF.
+     */
+    public static void mainTest() {
+        MealService mealService = new MealServiceImpl(new MockDatabaseImpl());
+        List<String> expectedOutputs = new ArrayList<>();
+        expectedOutputs.add("Eggs, Toast, Coffee");
+        expectedOutputs.add("Eggs, Toast, Coffee");
+        expectedOutputs.add("Eggs, Toast, Coffee(3)");
+        expectedOutputs.add("Unable to process: Side is missing");
+        expectedOutputs.add("Sandwich, Chips, Soda");
+        expectedOutputs.add("Sandwich, Chips, Water");
+        expectedOutputs.add("Unable to process: Main cannot be ordered more than once, sandwich cannot be ordered " +
+                "more than once");
+        expectedOutputs.add("Sandwich, Chips(2), Water");
+        expectedOutputs.add("Unable to process: Main is missing, side is missing");
+        expectedOutputs.add("Steak, Potatoes, Wine, Water, Cake");
+        expectedOutputs.add("Unable to process: Dessert is missing");
+        List<String> inputs = new ArrayList<>();
+        inputs.add("Breakfast 1,2,3");
+        inputs.add("Breakfast 2,3,1");
+        inputs.add("Breakfast 1,2,3,3,3");
+        inputs.add("Breakfast 1");
+        inputs.add("Lunch 1,2,3");
+        inputs.add("Lunch 1,2");
+        inputs.add("Lunch 1,1,2,3");
+        inputs.add("Lunch 1,2,2");
+        inputs.add("Lunch");
+        inputs.add("Dinner 1,2,3,4");
+        inputs.add("Dinner 1,2,3");
+        List<String> outputs = new ArrayList<>();
+        inputs.forEach(input -> {
+            try {
+                MealOrder mealOrder = mealService.convertInputToOrder(input);
+                Meal meal = mealService.orderMeal(mealOrder);
+                outputs.add(meal.toString());
+            } catch (ErrorsException e) {
+                outputs.add(e.toString());
+            }
+        });
+        System.out.println(Globals.DASHED_DELIM);
+        System.out.println("Tests:\n");
+        for (int i = 0; i < outputs.size(); i++) {
+            String input = inputs.get(i);
+            String expectedOutput = expectedOutputs.get(i);
+            String output = outputs.get(i);
+            if (!output.equals(expectedOutput)) {
+                System.out.println("TEST FAILED! Expected output: " + expectedOutput);
+            } else {
+                System.out.println("TEST PASSED!");
+            }
+            System.out.println();
+            System.out.println("\tIn: " + input);
+            System.out.println("\tOut: " + output);
+            System.out.println();
         }
     }
 
-    public static void testAdminsDB2() {
-        Admins admins = new Admins();
-        admins.add("john", "password");
-        if (admins.authenticated("john", "hello")) {
-            System.out.println("Failed");
-        } else {
-            System.out.println("Passed");
-        }
-    }
-
+    /**
+     * First test for creating meals.
+     */
     public static void testCreateMeal1() {
         MealService mealService = new MealServiceImpl(new MockDatabaseImpl());
         try {
@@ -64,15 +112,15 @@ public class Tests {
             inputs.add("Lunch 1,2");
             inputs.add("Lunch 1,2,2");
             inputs.add("Dinner 1,2,3,4");
-            List<Meal> meals = new ArrayList<>();
+            List<String> outputs = new ArrayList<>();
             inputs.forEach(input -> {
                 MealOrder mealOrder = mealService.convertInputToOrder(input);
                 Meal meal = mealService.orderMeal(mealOrder);
-                meals.add(meal);
+                outputs.add(meal.toString());
             });
             List<Integer> wrongIndexes = new ArrayList<>();
             for (int i = 0; i < expectedOutputs.size(); i++) {
-                if (!expectedOutputs.get(i).equals(meals.get(i).toString())) {
+                if (!expectedOutputs.get(i).equals(outputs.get(i))) {
                     wrongIndexes.add(i);
                 }
             }
@@ -82,7 +130,7 @@ public class Tests {
                 System.out.println("Failed");
                 wrongIndexes.forEach(wrongIndex -> {
                     System.out.println("\tExpected: " + expectedOutputs.get(wrongIndex));
-                    System.out.println("\t\tGot: " + meals.get(wrongIndex).toString());
+                    System.out.println("\t\tGot: " + outputs.get(wrongIndex));
                 });
             }
         } catch (InvalidInputException e) {
@@ -91,6 +139,9 @@ public class Tests {
         }
     }
 
+    /**
+     * Second test for creating meals.
+     */
     public static void testCreateMeal2() {
         MealService mealService = new MealServiceImpl(new MockDatabaseImpl());
         List<String> expectedOutputs = new ArrayList<>();
@@ -129,6 +180,9 @@ public class Tests {
         }
     }
 
+    /**
+     * First test for converting input into meal order.
+     */
     public static void testConvertInputOrder1() {
         MealOrder controlMealOrder1 = new MealOrder(MealType.BREAKFAST, new ArrayList<Integer>() {{
             add(1);
@@ -166,6 +220,9 @@ public class Tests {
         }
     }
 
+    /**
+     * Second test for converting input into meal order.
+     */
     public static void testConvertInputOrder2() {
         MealService mealService = new MealServiceImpl(new MockDatabaseImpl());
         List<String> inputs = new ArrayList<>();
@@ -188,6 +245,9 @@ public class Tests {
         }
     }
 
+    /**
+     * Third test for converting input into meal order.
+     */
     public static void testConvertInputOrder3() {
         int exceptionCount = 0;
         MealService mealService = new MealServiceImpl(new MockDatabaseImpl());

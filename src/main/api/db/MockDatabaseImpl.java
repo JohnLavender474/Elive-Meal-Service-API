@@ -1,6 +1,5 @@
 package main.api.db;
 
-import main.api.db.tables.Admins;
 import main.api.db.tables.DatabaseTable;
 import main.api.db.tables.MealItems;
 import main.api.domain.MealItem;
@@ -38,12 +37,6 @@ public class MockDatabaseImpl implements Database {
         mealItems.add("Water", new MealItem("Water", MealItemType.DRINK));
 
         databaseTables.put("MealItems", mealItems);
-
-
-        Admins admins = new Admins();
-        admins.add("user", "password");
-
-        databaseTables.put("Admins", admins);
 
     }
 

@@ -1,13 +1,23 @@
 package main.api.services;
 
-import main.api.domain.Meal;
-import main.api.domain.MealOrder;
-import main.api.domain.MealType;
+import main.api.domain.*;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Interface for meal service.
  */
 public interface MealService {
+
+    /**
+     * Returns a map containing the meal items for the provided meal type.
+     *
+     * @param mealType the meal type
+     * @return map containing meal items
+     */
+    Map<MealItemType, Set<MealItem>> viewMenuFor(MealType mealType);
 
     /**
      * Converts the string input into a meal order object . Throws an {@link main.api.exceptions.InvalidInputException}
@@ -25,20 +35,5 @@ public interface MealService {
      * @return the meal
      */
     Meal orderMeal(MealOrder order);
-
-    /**
-     * Adds an option to the menu selection.
-     *
-     * @param input the input for the new menu selection
-     */
-    void addMealOption(MealType mealType, String input);
-
-    /**
-     * Removes an option from the menu selection.
-     *
-     * @param type the meal type to remove from.
-     * @param id   the id of the item to remove
-     */
-    void removeMealOption(MealType type, int id);
 
 }
