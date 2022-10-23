@@ -6,7 +6,9 @@ package main;
 public class App {
 
     public static void main(String[] args) {
-        Tests.driver();
+        // Tests.driver();
+
+        // TODO: Start on command line app
     }
 
 }
