@@ -204,11 +204,14 @@ public class App {
             return;
         }
         viewCurrentOrders();
-        System.out.print("\nEnter order number to delete: ");
+        System.out.print("\nEnter order number to delete (or enter \"x\" to cancel): ");
         int option;
         while (true) {
             System.out.print("\nPlease enter order number: ");
             String input = scanner.nextLine();
+            if (input.equalsIgnoreCase("x")) {
+                return;
+            }
             if (Globals.isNumericInput(input) && Globals.isInRange((option =
                     Globals.parseIntOrDefault(input, -1)), 1, user.orders.size())) {
                 break;
