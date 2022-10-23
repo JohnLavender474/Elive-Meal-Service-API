@@ -9,18 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="716f7704-24de-4b91-ba60-c268f75a2e22" name="Changes" comment="I forgot to add flowchart diagrams to ui-dev branch before merging with main. Going ahead and adding them here into master.">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entry_SE_Test_2021.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/docs/pdf/Entry_SE_Test_2021.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fast-Meal-Service-API.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/api/domain/MealItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/api/domain/MealItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/api/domain/MealRules.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/api/domain/MealRules.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/api/factories/MealFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/api/factories/MealFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/api/factories/StandardMealFactoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/api/factories/StandardMealFactoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/api/services/MealService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/api/services/MealService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/api/services/MealServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/api/services/MealServiceImpl.java" afterDir="false" />
-    </list>
+    <list default="true" id="716f7704-24de-4b91-ba60-c268f75a2e22" name="Changes" comment="Wrote README.md and also fixed issues with code that were missed before. Tested program again and did not find any issues." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -222,7 +211,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666551561399</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Wrote README.md and also fixed issues with code that were missed before. Tested program again and did not find any issues.">
+      <created>1666558413499</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1666558413499</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -250,6 +246,7 @@
     <MESSAGE value="Wrote command line gui app, rewrote tests to print in necessary format, and packaged app into jar." />
     <MESSAGE value="Fixed &quot;delete order&quot; option in app not allowing user to cancel. Repackaged jar." />
     <MESSAGE value="I forgot to add flowchart diagrams to ui-dev branch before merging with main. Going ahead and adding them here into master." />
-    <option name="LAST_COMMIT_MESSAGE" value="I forgot to add flowchart diagrams to ui-dev branch before merging with main. Going ahead and adding them here into master." />
+    <MESSAGE value="Wrote README.md and also fixed issues with code that were missed before. Tested program again and did not find any issues." />
+    <option name="LAST_COMMIT_MESSAGE" value="Wrote README.md and also fixed issues with code that were missed before. Tested program again and did not find any issues." />
   </component>
 </project>

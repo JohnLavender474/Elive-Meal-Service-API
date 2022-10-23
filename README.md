@@ -64,7 +64,7 @@ with the API. App.java is merely a UI shell.
 
 <ol>
     <li>Download either the JAR file by itself or the .zip file for the entire repository</li>
-    <li>Navigate to the directory containing the JAR file</li>
+    <li>Navigate using a command line app to the directory containing the JAR file</li>
     <li> 
         <span>There are two options for running the jar</span>
         <ol>
@@ -74,17 +74,17 @@ with the API. App.java is merely a UI shell.
                     <li>This will run the test method(s) contained in tests/Tests.java</li> 
                     <li>These are the same tests as those listed out in the "Task Requirements" documentation above</li>
                     <li>Each test will print output including a "PASS" or "FAIL" statement</li>
-                    <li>Once all the tests have run, then the program will exit</li>
+                    <li>Once all the tests have run, the program will exit</li>
                 </ul>
             </li>
             <li>
                 <span>
                     Enter "java -jar Fast-Meal-Service-API.jar" to run the normal program.
-                    (This is the same command as the first but without the word "test" at the end)
+                    (Same command as the first but without the word "test" at the end)
                 </span>
                 <ul>
-                    <li>This will run the cl gui app</li>
-                    <li>Instructions for running the cl gui app are enumerated below</li>
+                    <li>This will run the command-line gui app</li>
+                    <li>Instructions for running the command-line gui app enumerated below</li>
                 </ul>
             </li>
         </ol>
@@ -92,9 +92,10 @@ with the API. App.java is merely a UI shell.
 </ol>
 
 If for any reason you want to build from source instead of the running the jar, you can load this project into IntelliJ 
-and run the main method.
+and create a run configuration for run the main method in App.java.
 
-Also, if for any reason you prefer to do so, you can look into running Java on Docker:
+Alternatively, if for any reason you prefer or need to do so (such as inability to install JRE locally), you can look 
+into running Java on Docker:
 https://www.jetbrains.com/help/idea/running-a-java-app-in-a-container.html#run_java_app_in_container
 
 #### OUTPUT FOR "java -jar Fast-Meal-Service-API.jar test"
