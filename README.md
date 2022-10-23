@@ -17,6 +17,8 @@ To run command-line ui app, run:
 
 More info about these options further below.
 
+---
+
 ### WHAT IS THIS PROJECT?
 
 This project was written in the span of two days (over the weekend of October 22, 2022) as part of the 
