@@ -150,6 +150,9 @@ public class App {
             System.out.println("\n\t" + ConversionUtils.enumToProperStr(itemType) + ":");
             items.forEach(item -> System.out.println("\t\t" + item.getId() + ". " + item.getName()));
         });
+        System.out.println("\nRULES:\n");
+        MealRules rules = mealService.getMealRulesFor(mealType);
+        System.out.println(rules);
         makeUserPressEnter();
     }
 
@@ -256,7 +259,7 @@ public class App {
     }
 
     private void makeUserPressEnter() {
-        System.out.print("\n\nPress \"ENTER\" to continue: ");
+        System.out.print("\nPress \"ENTER\" to continue: ");
         scanner.nextLine();
     }
 

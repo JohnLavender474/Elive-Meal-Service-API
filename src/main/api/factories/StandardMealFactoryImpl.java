@@ -36,6 +36,11 @@ public class StandardMealFactoryImpl implements MealFactory {
     }
 
     @Override
+    public MealRules getMealRules() {
+        return rules;
+    }
+
+    @Override
     public Meal createMeal(MealOrder order) {
         // Use tree map to preserve ordering of enums in their declarations
         SortedMap<MealItem, Integer> meal = new TreeMap<>();

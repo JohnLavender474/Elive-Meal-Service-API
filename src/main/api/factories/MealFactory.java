@@ -1,9 +1,6 @@
 package main.api.factories;
 
-import main.api.domain.Meal;
-import main.api.domain.MealItem;
-import main.api.domain.MealItemType;
-import main.api.domain.MealOrder;
+import main.api.domain.*;
 
 import java.util.Map;
 import java.util.Set;
@@ -19,6 +16,13 @@ public interface MealFactory {
      * @return the menu selection
      */
     Map<MealItemType, Set<MealItem>> getMenuSelection();
+
+    /**
+     * Returns the meal rules.
+     *
+     * @return the meal rules
+     */
+    MealRules getMealRules();
 
     /**
      * Creates a meal object from the meal order. Throws an {@link main.api.exceptions.InvalidInputException} if there

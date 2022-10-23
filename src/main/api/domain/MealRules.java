@@ -1,5 +1,7 @@
 package main.api.domain;
 
+import main.api.utils.ConversionUtils;
+
 import java.util.*;
 
 /**
@@ -52,15 +54,6 @@ public class MealRules {
     }
 
     /**
-     * Returns the meal item types that require user selection.
-     *
-     * @return the meal item types that require user selection
-     */
-    public Set<MealItemType> getRequiredTypeSet() {
-        return Collections.unmodifiableSet(requiredTypeSet);
-    }
-
-    /**
      * Returns an unmodifiable view of the item types that have default values.
      *
      * @return the view of item types with default values
@@ -106,6 +99,46 @@ public class MealRules {
      */
     public Set<MealItem> getItemsToBeAddedIfAbsent() {
         return Collections.unmodifiableSet(addedIfAbsent);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("1. Meal item types that require user selection:\n");
+        if (requiredTypeSet.isEmpty()) {
+            sb.append("\tNONE\n");
+        } else {
+            requiredTypeSet.forEach(rt -> sb.append("\t")
+                    .append(ConversionUtils.enumToProperStr(rt)).append("\n"));
+        }
+        sb.append("2. Meal items that the user is allowed to order multiple of:\n");
+        if (setOfItemsThatCanBeMultiple.isEmpty()) {
+            sb.append("\tNONE\n");
+        } else {
+            setOfItemsThatCanBeMultiple.forEach(im -> sb.append("\t").append(im).append("\n"));
+        }
+        sb.append("3. Meal item types that the user is allowed to order multiple of:\n");
+        if (setOfTypesThatCanBeMultiple.isEmpty()) {
+            sb.append("\tNONE\n");
+        } else {
+            setOfTypesThatCanBeMultiple.forEach(tm -> sb.append("\t")
+                    .append(ConversionUtils.enumToProperStr(tm)).append("\n"));
+        }
+        sb.append("4. Meal item defaults:");
+        if (defaultMap.isEmpty()) {
+            sb.append("\tNONE\n");
+        } else {
+            defaultMap.forEach((type, item) -> sb.append("\n\t")
+                    .append(ConversionUtils.enumToProperStr(type))
+                    .append(":\n\t\t").append(item));
+        }
+        sb.append("\n5. Items the user gets for free with the meal if absent from order:\n");
+        if (addedIfAbsent.isEmpty()) {
+            sb.append("\tNONE");
+        } else {
+            addedIfAbsent.forEach(item -> sb.append("\t").append(item).append("\n"));
+        }
+        return sb.toString();
     }
 
 }

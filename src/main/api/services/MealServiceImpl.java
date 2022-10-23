@@ -32,6 +32,11 @@ public class MealServiceImpl implements MealService {
     }
 
     @Override
+    public MealRules getMealRulesFor(MealType mealType) {
+        return mealFactories.get(mealType).getMealRules();
+    }
+
+    @Override
     public MealOrder convertInputToOrder(String input) {
         int i = 0;
         while (i < input.length() && Character.isWhitespace(input.charAt(i))) {

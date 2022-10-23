@@ -90,7 +90,7 @@ public class MealItem implements Comparable<MealItem> {
     @Override
     public int compareTo(MealItem m) {
         int comp = type.compareTo(m.getType());
-        if (comp == 0) {
+        if (comp == 0 && !(id == null && m.getId() == null)) {
             if (id == null) {
                 comp = 1;
             } else if (m.getId() == null) {
@@ -103,6 +103,16 @@ public class MealItem implements Comparable<MealItem> {
             comp = name.compareTo(m.getName());
         }
         return comp;
+    }
+
+    @Override
+    public String toString() {
+        String s = "";
+        if (id != null) {
+            s += id + ". ";
+        }
+        s += name;
+        return s;
     }
 
 }
