@@ -179,7 +179,7 @@ https://www.jetbrains.com/help/idea/running-a-java-app-in-a-container.html#run_j
 
 ---
 
-### THANK YOU FOR TAKING THE TIME TO LOOK OVER MY PROJECT. I HOPE YOU ENJOYED IT! 
+### THANK YOU FOR TAKING THE TIME TO ENJOY MY PROJECT!
 
 
 
