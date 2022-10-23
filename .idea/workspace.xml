@@ -9,7 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="716f7704-24de-4b91-ba60-c268f75a2e22" name="Changes" comment="Wrote README.md and also fixed issues with code that were missed before. Tested program again and did not find any issues." />
+    <list default="true" id="716f7704-24de-4b91-ba60-c268f75a2e22" name="Changes" comment="Few more quick README.md edits">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -218,7 +220,21 @@
       <option name="project" value="LOCAL" />
       <updated>1666558413499</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Quick README.md edits">
+      <created>1666558648772</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1666558648772</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Few more quick README.md edits">
+      <created>1666558709660</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1666558709660</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -247,6 +263,8 @@
     <MESSAGE value="Fixed &quot;delete order&quot; option in app not allowing user to cancel. Repackaged jar." />
     <MESSAGE value="I forgot to add flowchart diagrams to ui-dev branch before merging with main. Going ahead and adding them here into master." />
     <MESSAGE value="Wrote README.md and also fixed issues with code that were missed before. Tested program again and did not find any issues." />
-    <option name="LAST_COMMIT_MESSAGE" value="Wrote README.md and also fixed issues with code that were missed before. Tested program again and did not find any issues." />
+    <MESSAGE value="Quick README.md edits" />
+    <MESSAGE value="Few more quick README.md edits" />
+    <option name="LAST_COMMIT_MESSAGE" value="Few more quick README.md edits" />
   </component>
 </project>
