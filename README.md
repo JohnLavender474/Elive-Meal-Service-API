@@ -3,6 +3,20 @@
 
 ---
 
+### QUICK NOTE
+
+JAR file included in head directory. 
+
+To run test suite (prints test inputs and outputs to console and then exits), run:
+
+` java -jar Fast-Meal-Service-API.jar test `
+
+To run command-line ui app, run:
+
+` java -jar Fast-Meal-Service-API.jar `
+
+More info about these options further below.
+
 ### WHAT IS THIS PROJECT?
 
 This project was written in the span of two days (over the weekend of October 22, 2022) as part of the 
