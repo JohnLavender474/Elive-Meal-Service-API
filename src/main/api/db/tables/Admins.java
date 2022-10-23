@@ -1,7 +1,6 @@
-package main.db.tables;
+package main.api.db.tables;
 
 import main.api.exceptions.InvalidInputException;
-import main.db.DatabaseTable;
 
 import java.util.Base64;
 import java.util.HashMap;
@@ -11,7 +10,7 @@ import java.util.Map;
  * A database table holding the usernames and passwords for admins where the username is the id
  * and the passwords are the value.
  */
-public class Admins implements DatabaseTable<String, String> {
+public class Admins implements DatabaseTable<String> {
 
     private final Map<String, String> admins = new HashMap<>();
 

@@ -3,16 +3,16 @@ package main.api.exceptions;
 import java.util.Collection;
 
 /**
- * Exception to be thrown when provided input is incorrect.
+ * Exception to be thrown when the program reaches an invalid state.
  */
-public class InvalidInputException extends ErrorsException {
+public class InvalidStateException extends ErrorsException {
 
     /**
      * Instantiate new invalid input exception.
      *
      * @param errors the errors
      */
-    public InvalidInputException(String... errors) {
+    public InvalidStateException(String... errors) {
         super(errors);
     }
 
@@ -21,7 +21,7 @@ public class InvalidInputException extends ErrorsException {
      *
      * @param errors the errors
      */
-    public InvalidInputException(Collection<String> errors) {
+    public InvalidStateException(Collection<String> errors) {
         super(errors);
     }
 

@@ -1,44 +1,43 @@
 package main.api.services;
 
 import main.api.domain.Meal;
+import main.api.domain.MealOrder;
 import main.api.domain.MealType;
 
-import java.util.Collection;
-
-/** Interface for meal service. */
+/**
+ * Interface for meal service.
+ */
 public interface MealService {
 
     /**
-     * Validates the meal order input. If there are errors, then the method returns
-     * false and the error messages are placed into the provided error collection.
+     * Converts the string input into a meal order object . Throws an {@link main.api.exceptions.InvalidInputException}
+     * if containing a list of errors if the input is invalid.
      *
-     * @param input  the meal order input
-     * @param errors the list in which to place any errors
-     * @return if the input is valid
+     * @param input the string input representing the order
+     * @return the meal order object
      */
-    boolean validateInput(String input, Collection<String> errors);
+    MealOrder convertInputToOrder(String input);
 
     /**
-     * Reads the meal order input and returns a meal object with values corresponding
-     * to those provided in the input.
+     * Reads the meal order and returns a meal object with values corresponding to those provided in the input.
      *
-     * @param input the meal order input
+     * @param order the meal order
      * @return the meal
      */
-    Meal orderMeal(String input);
+    Meal orderMeal(MealOrder order);
 
     /**
      * Adds an option to the menu selection.
      *
      * @param input the input for the new menu selection
      */
-    void addMealOption(String input);
+    void addMealOption(MealType mealType, String input);
 
     /**
      * Removes an option from the menu selection.
      *
      * @param type the meal type to remove from.
-     * @param id the id of the item to remove
+     * @param id   the id of the item to remove
      */
     void removeMealOption(MealType type, int id);
 
