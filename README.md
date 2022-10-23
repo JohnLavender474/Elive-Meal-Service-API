@@ -195,6 +195,36 @@ https://www.jetbrains.com/help/idea/running-a-java-app-in-a-container.html#run_j
 
 ---
 
+### DESIGN DOCUMENTATION
+
+#### CLASS DIAGRAM 
+
+<p align="center">
+  <img src="docs/img/design/ClassDiagram.png" width="350" alt="requirements">
+</p>
+
+#### FLOWCHARTS:
+
+##### MAIN
+
+<p align="center">
+  <img src="docs/img/design/MainFlowchart.png" width="350" alt="requirements">
+</p>
+
+##### ORDERING MEALS
+
+<p align="center">
+  <img src="docs/img/design/OrderMealsFlowchart.png" width="350" alt="requirements">
+</p>
+
+##### CHECKOUT
+
+<p align="center">
+  <img src="docs/img/design/CheckoutFlowchart.png" width="350" alt="requirements">
+</p>
+
+---
+
 ### THANK YOU FOR TAKING THE TIME TO ENJOY MY PROJECT!
 
 

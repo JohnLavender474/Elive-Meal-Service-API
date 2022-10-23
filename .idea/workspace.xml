@@ -9,8 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="716f7704-24de-4b91-ba60-c268f75a2e22" name="Changes" comment="Few more quick README.md edits">
+    <list default="true" id="716f7704-24de-4b91-ba60-c268f75a2e22" name="Changes" comment="Whoops, forgot horizontal rule in README.md">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/img/Checkout Flowchart.png" beforeDir="false" afterPath="$PROJECT_DIR$/docs/img/design/CheckoutFlowchart.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/img/Class Diagram.png" beforeDir="false" afterPath="$PROJECT_DIR$/docs/img/design/ClassDiagram.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/img/Main Flowchart.png" beforeDir="false" afterPath="$PROJECT_DIR$/docs/img/design/MainFlowchart.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/img/Order Meals Flowchart.png" beforeDir="false" afterPath="$PROJECT_DIR$/docs/img/design/OrderMealsFlowchart.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,11 +73,11 @@
       <recent name="$PROJECT_DIR$/" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/docs/img/design" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/docs/pdf" />
       <recent name="$PROJECT_DIR$/docs/other" />
       <recent name="$PROJECT_DIR$/docs/img" />
-      <recent name="$PROJECT_DIR$/docs" />
     </key>
   </component>
   <component name="RunManager">
@@ -248,7 +253,21 @@
       <option name="project" value="LOCAL" />
       <updated>1666558797846</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Added quick note in README.md">
+      <created>1666559090259</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1666559090259</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Whoops, forgot horizontal rule in README.md">
+      <created>1666559122770</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1666559122770</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -279,6 +298,8 @@
     <MESSAGE value="Wrote README.md and also fixed issues with code that were missed before. Tested program again and did not find any issues." />
     <MESSAGE value="Quick README.md edits" />
     <MESSAGE value="Few more quick README.md edits" />
-    <option name="LAST_COMMIT_MESSAGE" value="Few more quick README.md edits" />
+    <MESSAGE value="Added quick note in README.md" />
+    <MESSAGE value="Whoops, forgot horizontal rule in README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Whoops, forgot horizontal rule in README.md" />
   </component>
 </project>
