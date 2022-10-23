@@ -5,8 +5,8 @@
 
 ### WHAT IS THIS PROJECT?
 
-This project was written in the span of two days as part of the application process
-for an internship at a particular company. It is a simple API project with a mock database
+This project was written in the span of two days (over the weekend of October 22, 2022, as part of the 
+application process for an internship at a particular company. This is a simple API project with a mock database table
 and a command-line gui app. 
 
 ---
