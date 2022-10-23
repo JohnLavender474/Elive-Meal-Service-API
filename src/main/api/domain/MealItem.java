@@ -18,8 +18,8 @@ public class MealItem implements Comparable<MealItem> {
      *
      * @param name the name of the meal item
      */
-    public MealItem(String name) {
-        this(null, name, MealItemType.ANY);
+    public MealItem(String name, MealItemType type) {
+        this(null, name, type);
     }
 
     /**
@@ -90,8 +90,14 @@ public class MealItem implements Comparable<MealItem> {
     @Override
     public int compareTo(MealItem m) {
         int comp = type.compareTo(m.getType());
-        if (comp == 0 && id != null && m.getId() != null) {
-            comp = Integer.compare(id, m.getId());
+        if (comp == 0) {
+            if (id == null) {
+                comp = 1;
+            } else if (m.getId() == null) {
+                comp = -1;
+            } else {
+                comp = Integer.compare(id, m.getId());
+            }
         }
         if (comp == 0) {
             comp = name.compareTo(m.getName());

@@ -35,7 +35,7 @@ public class MockDatabaseImpl implements Database {
         mealItems.add("Wine", new MealItem(3, "Wine", MealItemType.DRINK));
         mealItems.add("Cake", new MealItem(4, "Cake", MealItemType.DESSERT));
         // Any
-        mealItems.add("Water", new MealItem("Water"));
+        mealItems.add("Water", new MealItem("Water", MealItemType.DRINK));
 
         databaseTables.put("MealItems", mealItems);
 

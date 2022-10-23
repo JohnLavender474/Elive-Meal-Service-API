@@ -5,8 +5,7 @@ import main.api.db.tables.MealItems;
 import main.api.domain.*;
 import main.api.exceptions.InvalidInputException;
 import main.api.exceptions.InvalidStateException;
-import main.api.factories.MealFactory;
-import main.api.factories.StandardMealFactoryImpl;
+import main.api.factories.*;
 
 import java.util.*;
 
@@ -21,122 +20,21 @@ public class MealServiceImpl implements MealService {
      * Instantiates a new meal service impl.
      */
     public MealServiceImpl(Database database) {
-
-        // In a real world app, the factory classes would have access to the database table for meal items.
-        // Instead, we will create static instances that the factories rely on. In a future version, we
-        // would rewrite the factory classes to take in the database table(s) as parameter(s).
-
         MealItems mealItems = (MealItems) database.getDatabaseTable("MealItems");
-
-        // Define breakfast factory:
-
-        // Breakfast items: Eggs, Toast, Coffee
-        List<MealItem> breakfastItems = new ArrayList<>();
-        breakfastItems.add(mealItems.get("Eggs"));
-        breakfastItems.add(mealItems.get("Toast"));
-        breakfastItems.add(mealItems.get("Coffee"));
-
-        // Breakfast required item types: Main and Side
-        Set<MealItemType> breakfastRequiredTypeSet = new HashSet<>();
-        breakfastRequiredTypeSet.add(MealItemType.MAIN);
-        breakfastRequiredTypeSet.add(MealItemType.SIDE);
-
-        // Breakfast items that can be multiple: Coffee
-        Set<MealItem> breakfastItemsThatCanBeMultiple = new HashSet<>();
-        breakfastItemsThatCanBeMultiple.add(mealItems.get("Coffee"));
-
-        // Breakfast item types that can be multiple: none
-        Set<MealItemType> breakfastItemTypesThatCanBeMultiple = new HashSet<>();
-
-        // Breakfast defaults: add Water if no Drink is ordered
-        Map<MealItemType, MealItem> breakfastDefaultMap = new HashMap<>();
-        breakfastDefaultMap.put(MealItemType.DRINK, mealItems.get("Water"));
-
-        // Breakfast to add if absent: none
-        Set<MealItem> breakfastAddedIfAbsent = new HashSet<>();
-
-        MealRules breakfastRules = new MealRules(breakfastRequiredTypeSet, breakfastItemsThatCanBeMultiple,
-                breakfastItemTypesThatCanBeMultiple, breakfastDefaultMap, breakfastAddedIfAbsent);
-
-        MealFactory breakfastFactory = new StandardMealFactoryImpl(breakfastItems, breakfastRules);
-        mealFactories.put(MealType.BREAKFAST, breakfastFactory);
-
-
-        // Define lunch factory:
-
-        // Lunch items: Sandwich, Chips, Soda
-        List<MealItem> lunchItems = new ArrayList<>();
-        lunchItems.add(mealItems.get("Sandwich"));
-        lunchItems.add(mealItems.get("Chips"));
-        lunchItems.add(mealItems.get("Soda"));
-
-        // Lunch required types: Main, Side
-        Set<MealItemType> lunchRequiredTypeSet = new HashSet<>();
-        lunchRequiredTypeSet.add(MealItemType.MAIN);
-        lunchRequiredTypeSet.add(MealItemType.SIDE);
-
-        // Lunch items that can be multiple: none
-        Set<MealItem> lunchItemsThatCanBeMultiple = new HashSet<>();
-
-        // Lunch item types that can be multiple: Side
-        Set<MealItemType> lunchItemTypesThatCanBeMultiple = new HashSet<>();
-        lunchItemTypesThatCanBeMultiple.add(MealItemType.SIDE);
-
-        // Lunch defaults: Water if no Drink is ordered
-        Map<MealItemType, MealItem> lunchDefaultMap = new HashMap<>();
-        lunchDefaultMap.put(MealItemType.DRINK, mealItems.get("Water"));
-
-        // Lunch to add if present: none
-        Set<MealItem> lunchAddedIfAbsent = new HashSet<>();
-
-        MealRules lunchRules = new MealRules(lunchRequiredTypeSet, lunchItemsThatCanBeMultiple,
-                lunchItemTypesThatCanBeMultiple, lunchDefaultMap, lunchAddedIfAbsent);
-
-        MealFactory lunchFactory = new StandardMealFactoryImpl(lunchItems, lunchRules);
-        mealFactories.put(MealType.LUNCH, lunchFactory);
-
-
-        // Define dinner factory:
-
-        // Dinner items: Steak, Potatoes, Wine, Cake
-        List<MealItem> dinnerItems = new ArrayList<>();
-        dinnerItems.add(mealItems.get("Steak"));
-        dinnerItems.add(mealItems.get("Potatoes"));
-        dinnerItems.add(mealItems.get("Wine"));
-        dinnerItems.add(mealItems.get("Cake"));
-
-        // Dinner required types: Main, Side, Dessert
-        Set<MealItemType> dinnerRequiredTypeSet = new HashSet<>();
-        dinnerRequiredTypeSet.add(MealItemType.MAIN);
-        dinnerRequiredTypeSet.add(MealItemType.SIDE);
-        dinnerRequiredTypeSet.add(MealItemType.DESSERT);
-
-        // Dinner items that can be multiple: none
-        Set<MealItem> dinnerItemsThatCanBeMultiple = new HashSet<>();
-
-        // Dinner items types that can be multiple: none
-        Set<MealItemType> dinnerItemTypesThatCanBeMultiple = new HashSet<>();
-
-        // Dinner default map: Water if no Drink is ordered
-        Map<MealItemType, MealItem> dinnerDefaultMap = new HashMap<>();
-        dinnerDefaultMap.put(MealItemType.DRINK, mealItems.get("Water"));
-
-        // Dinner add if absent: Add Water if not present
-        Set<MealItem> dinnerAddedIfAbsent = new HashSet<>();
-        dinnerAddedIfAbsent.add(mealItems.get("Water"));
-
-        MealRules dinnerRules = new MealRules(dinnerRequiredTypeSet, dinnerItemsThatCanBeMultiple,
-                dinnerItemTypesThatCanBeMultiple, dinnerDefaultMap, dinnerAddedIfAbsent);
-
-        MealFactory dinnerFactory = new StandardMealFactoryImpl(dinnerItems, dinnerRules);
-        mealFactories.put(MealType.DINNER, dinnerFactory);
-
+        mealFactories.put(MealType.BREAKFAST, new BreakfastFactory(mealItems));
+        mealFactories.put(MealType.LUNCH, new LunchFactory(mealItems));
+        mealFactories.put(MealType.DINNER, new DinnerFactory(mealItems));
     }
 
     @Override
     public MealOrder convertInputToOrder(String input) {
+        int i = 0;
+        while (i < input.length() && Character.isWhitespace(input.charAt(i))) {
+            i++;
+        }
+        String fixedInput = input.substring(i);
         // Split the input string by whitespace
-        String[] parseTypeAndItems = input.split("\\s+");
+        String[] parseTypeAndItems = fixedInput.split("\\s+");
         // There should only be two tokens
         if (parseTypeAndItems.length > 2 || parseTypeAndItems.length < 1) {
             throw new InvalidInputException("Invalid parsing, " +

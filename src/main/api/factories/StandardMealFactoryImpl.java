@@ -2,6 +2,7 @@ package main.api.factories;
 
 import main.api.domain.*;
 import main.api.exceptions.InvalidInputException;
+import main.api.utils.ConversionUtils;
 
 import java.util.*;
 
@@ -36,7 +37,7 @@ public class StandardMealFactoryImpl implements MealFactory {
     }
 
     @Override
-    public Meal createMeal(MealOrder order) throws InvalidInputException {
+    public Meal createMeal(MealOrder order) {
         // Use tree map to preserve ordering of enums in their declarations
         SortedMap<MealItem, Integer> meal = new TreeMap<>();
         Set<MealItemType> typesInRequestedMeal = new HashSet<>();
@@ -47,21 +48,19 @@ public class StandardMealFactoryImpl implements MealFactory {
             MealItem item = idToItemMap.get(itemId);
             // If item is null, then the id is invalid
             if (item == null) {
-                errors.add("Unknown item id: " + itemId);
+                errors.add("invalid item id " + itemId);
                 return;
             }
             // Check if meal rules allows multiple of item
             if (typesInRequestedMeal.contains(item.getType()) && !rules.canBeMultiple(item.getType()) &&
                     !rules.canBeMultiple(item)) {
-                errors.add("Menu rules states you can't have more than one of item type <" + item.getType() +
-                        "> and you can't have more than one of <" +  item + ">");
+                errors.add(String.format(ErrorMessages.TOO_MUCH_ORDER_ERR, item.getType().toString().toLowerCase()));
             }
             typesInRequestedMeal.add(item.getType());
             // Check if meal rules allows for multiple of item
             int count = meal.getOrDefault(item, 0) + 1;
             if (count > 1 && !rules.canBeMultiple(item.getType()) && !rules.canBeMultiple(item)) {
-                errors.add("Menu rules states you can't have more than one of item type <" + item.getType() +
-                        "> and you can't have more than one of <" +  item + ">");
+                errors.add(String.format(ErrorMessages.TOO_MUCH_ORDER_ERR, item.getName().toLowerCase()));
             }
             meal.put(item, count);
         });
@@ -86,12 +85,13 @@ public class StandardMealFactoryImpl implements MealFactory {
         // Check for the required types that are missing, add error is missing types set is not empty
         Set<MealItemType> missingTypes = new HashSet<>();
         if (!rules.satisfiesRequiredTypes(typesInRequestedMeal, missingTypes)) {
-            missingTypes.forEach(missingType ->
-                    errors.add("Meal item type " + missingType + " requires user selection!"));
+            missingTypes.stream().sorted().forEach(missingType -> errors.add(
+                    String.format(ErrorMessages.MISSING_ERR, missingType.toString().toLowerCase())));
         }
         // If there are any errors, then we are not allowed to instantiate a meal with the given meal order
         if (!errors.isEmpty()) {
-            throw new InvalidInputException(errors);
+            String error = ErrorMessages.buildErrMsg(errors);
+            throw new InvalidInputException(error);
         }
         return new Meal(meal);
     }

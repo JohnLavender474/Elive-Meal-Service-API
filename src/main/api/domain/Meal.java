@@ -1,5 +1,6 @@
 package main.api.domain;
 
+import java.util.Map;
 import java.util.SortedMap;
 
 /**
@@ -27,6 +28,26 @@ public class Meal {
      */
     public SortedMap<MealItem, Integer> getItemMap() {
         return itemMap;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        int size = itemMap.entrySet().size();
+        int i = 0;
+        for (Map.Entry<MealItem, Integer> entry : itemMap.entrySet()) {
+            MealItem item = entry.getKey();
+            int count = entry.getValue();
+            sb.append(item.getName());
+            if (count > 1) {
+                sb.append("(").append(count).append(")");
+            }
+            if (i < size - 1) {
+                sb.append(", ");
+            }
+            i++;
+        }
+        return sb.toString();
     }
 
 }

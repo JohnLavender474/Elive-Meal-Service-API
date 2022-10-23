@@ -34,4 +34,16 @@ public class ErrorsException extends RuntimeException {
         return Collections.unmodifiableList(errors);
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < errors.size(); i++) {
+            sb.append(errors.get(i));
+            if (i < errors.size() - 1) {
+                sb.append("; ");
+            }
+        }
+        return sb.toString();
+    }
+
 }
