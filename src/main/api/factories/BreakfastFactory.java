@@ -1,6 +1,5 @@
 package main.api.factories;
 
-import main.api.db.Database;
 import main.api.db.tables.MealItems;
 import main.api.domain.MealItem;
 import main.api.domain.MealItemType;
