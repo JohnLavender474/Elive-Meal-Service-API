@@ -108,7 +108,7 @@ with the API. App.java is merely a UI shell.
 </ol>
 
 If for any reason you want to build from source instead of the running the jar, you can load this project into IntelliJ 
-and create a run configuration for run the main method in App.java.
+and create a run configuration for running the main method in App.java. IntelliJ 
 
 Alternatively, if for any reason you prefer or need to do so (such as inability to install JRE locally), you can look 
 into running Java on Docker:
